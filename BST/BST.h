@@ -6,8 +6,11 @@ void bstInsert(BST* tree, int value);
 bool bstContains(BST* tree, int value);
 void bstFree(BST* tree);
 
+// Inorder depth-first traversal
 void bstInorder(BST* tree);
+// Preorder depth-first traversal
 void bstPreorder(BST* tree);
+// Postorder depth-first traversal
 void bstPostorder(BST* tree);
 
 int bstHeight(BST* tree);
