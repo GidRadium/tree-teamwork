@@ -1,5 +1,6 @@
 #include "BST.h"
 
+#include <stdbool.h>
 #include <stdlib.h>
 
 typedef struct Node {
@@ -38,13 +39,64 @@ typedef struct BST {
     struct Node *root;
 } BST;
 
-BST* createBST() {
+BST* bstCreate() {
     BST* tree = malloc(sizeof(BST));
     tree->root = NULL;
     return tree;
 }
 
-void deleteBST(BST* tree) {
+void insertRecursive(Node* root, int value) {
+    if (value < root->value) {
+        if (!root->leftChild) {
+            root->leftChild = createNode(value);
+            return;
+        }
+
+        insertRecursive(root->leftChild, value);
+    } else if (value > root->value) {
+        if (!root->rightChild) {
+            root->rightChild = createNode(value);
+            return;
+        }
+
+        insertRecursive(root->rightChild, value);
+    }
+}
+
+void bstInsert(BST* tree, int value) {
+    if (!tree) {
+        return;
+    }
+
+    if (!tree->root) {
+        tree->root = createNode(value);
+        return;
+    }
+
+    insertRecursive(tree->root, value);
+}
+
+bool containsRecursive(Node* root, int value) {
+    if (!root) {
+        return false;
+    }
+
+    if (value == root->value) {
+        return true;
+    }
+
+    if (value < root->value) {
+        return containsRecursive(root->leftChild, value);
+    } else {
+        return containsRecursive(root->rightChild, value);
+    }
+}
+
+bool bstContains(BST* tree, int value) {
+    return tree ? containsRecursive(tree->root, value) : false;
+}
+
+void bstFree(BST* tree) {
     if (!tree) {
         return;
     }
