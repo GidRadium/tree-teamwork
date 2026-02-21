@@ -1,7 +1,10 @@
 #pragma once
 
-struct BST;
+#include <stdbool.h>
 
+typedef struct BST BST;
+
+BST* bstCreate();
 void bstInsert(BST* tree, int value);
 bool bstContains(BST* tree, int value);
 void bstFree(BST* tree);

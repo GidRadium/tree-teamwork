@@ -1,18 +1,34 @@
 #include "BST.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-struct Node {
-    int value = 0;
-    struct Node* leftChild = NULL;
-    struct Node* rightChild = NULL;
-};
+typedef struct Node {
+    int value;
+    struct Node *leftChild;
+    struct Node *rightChild;
+} Node;
 
-struct BST {
-    struct Node *root;
-};
+Node* createNode(int value) {
+    Node* node = malloc(sizeof(Node));
+    node->value = value;
+    node->leftChild = NULL;
+    node->rightChild = NULL;
+    return node;
+}
+
+typedef struct BST {
+    Node *root;
+} BST;
+
+BST* bstCreate() {
+    BST* tree = malloc(sizeof(BST));
+    tree->root = NULL;
+    return tree;
+}
+
 
 void bstInorder(BST* tree) {
-    struct Node* current = tree->root;
+    Node* current = tree->root;
     if (current == NULL) {
         return;
     }
@@ -22,7 +38,7 @@ void bstInorder(BST* tree) {
 }
 
 void bstPreorder(BST* tree) {
-    struct Node* current = tree->root;
+    Node* current = tree->root;
     if (current == NULL) {
         return;
     }
@@ -32,7 +48,7 @@ void bstPreorder(BST* tree) {
 }
 
 void bstPostorder(BST* tree) {
-    struct Node* current = tree->root;
+    Node* current = tree->root;
     if (current == NULL) {
         return;
     }
