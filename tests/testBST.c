@@ -68,7 +68,7 @@ void testMultipleGrowingInserts()
 
 void testMultipleDiffrentInserts()
 {
-    int values[] = {1, 2, 3, -1, -2, 0, 4, -4};
+    int values[] = { 1, 2, 3, -1, -2, 0, 4, -4 };
     int count = 8;
 
     BST* tree = bstCreate();
