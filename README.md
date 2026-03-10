@@ -21,3 +21,8 @@ cmake --build build
 ```
 ctest --test-dir build --output-on-failure
 ```
+
+## Formatting
+```
+find . -path ./build -prune -o -type f -name '*.[c|h]' -print | xargs clang-format-18 --style=file -i
+```
