@@ -3,32 +3,39 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+typedef struct Node Node;
+
 typedef struct Node {
     int value;
-    struct Node *leftChild;
-    struct Node *rightChild;
+    Node *leftChild;
+    Node *rightChild;
 } Node;
 
-Node* createNode(int value) {
+Node* nodeCreate(int value) {
     Node* node = malloc(sizeof(Node));
+    if (node == NULL) {
+        return NULL;
+    }
+
     node->value = value;
     node->leftChild = NULL;
     node->rightChild = NULL;
+
     return node;
 }
 
-void deleteNode(Node* node) {
-    if (!node) {
+void nodeFree(Node* node) {
+    if (node == NULL) {
         return;
     }
 
-    if (node->leftChild) {
-        deleteNode(node->leftChild);
+    if (node->leftChild != NULL) {
+        nodeFree(node->leftChild);
         node->leftChild = NULL;
     }
 
-    if (node->rightChild) {
-        deleteNode(node->rightChild);
+    if (node->rightChild != NULL) {
+        nodeFree(node->rightChild);
         node->rightChild = NULL;
     }
 
@@ -36,26 +43,31 @@ void deleteNode(Node* node) {
 }
 
 typedef struct BST {
-    struct Node *root;
+    Node *root;
 } BST;
 
 BST* bstCreate() {
     BST* tree = malloc(sizeof(BST));
+    if (tree == NULL) {
+        return NULL;
+    }
+
     tree->root = NULL;
+
     return tree;
 }
 
 void insertRecursive(Node* root, int value) {
     if (value < root->value) {
-        if (!root->leftChild) {
-            root->leftChild = createNode(value);
+        if (root->leftChild == NULL) {
+            root->leftChild = nodeCreate(value);
             return;
         }
 
         insertRecursive(root->leftChild, value);
     } else if (value > root->value) {
-        if (!root->rightChild) {
-            root->rightChild = createNode(value);
+        if (root->rightChild == NULL) {
+            root->rightChild = nodeCreate(value);
             return;
         }
 
@@ -64,12 +76,12 @@ void insertRecursive(Node* root, int value) {
 }
 
 void bstInsert(BST* tree, int value) {
-    if (!tree) {
+    if (tree == NULL) {
         return;
     }
 
-    if (!tree->root) {
-        tree->root = createNode(value);
+    if (tree->root == NULL) {
+        tree->root = nodeCreate(value);
         return;
     }
 
@@ -77,7 +89,7 @@ void bstInsert(BST* tree, int value) {
 }
 
 bool containsRecursive(Node* root, int value) {
-    if (!root) {
+    if (root == NULL) {
         return false;
     }
 
@@ -93,16 +105,20 @@ bool containsRecursive(Node* root, int value) {
 }
 
 bool bstContains(BST* tree, int value) {
-    return tree ? containsRecursive(tree->root, value) : false;
+    if (tree == NULL) {
+        return false;
+    }
+
+    return containsRecursive(tree->root, value);
 }
 
 void bstFree(BST* tree) {
-    if (!tree) {
+    if (tree == NULL) {
         return;
     }
 
     if (tree->root) {
-        deleteNode(tree->root);
+        nodeFree(tree->root);
         tree->root = NULL;
     }
 
