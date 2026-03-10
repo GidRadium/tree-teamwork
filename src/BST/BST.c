@@ -7,11 +7,12 @@ typedef struct Node Node;
 
 typedef struct Node {
     int value;
-    Node *leftChild;
-    Node *rightChild;
+    Node* leftChild;
+    Node* rightChild;
 } Node;
 
-Node* nodeCreate(int value) {
+Node* nodeCreate(int value)
+{
     Node* node = malloc(sizeof(Node));
     if (node == NULL) {
         return NULL;
@@ -24,7 +25,8 @@ Node* nodeCreate(int value) {
     return node;
 }
 
-void nodeFree(Node* node) {
+void nodeFree(Node* node)
+{
     if (node == NULL) {
         return;
     }
@@ -43,10 +45,11 @@ void nodeFree(Node* node) {
 }
 
 typedef struct BST {
-    Node *root;
+    Node* root;
 } BST;
 
-BST* bstCreate() {
+BST* bstCreate()
+{
     BST* tree = malloc(sizeof(BST));
     if (tree == NULL) {
         return NULL;
@@ -57,7 +60,8 @@ BST* bstCreate() {
     return tree;
 }
 
-void insertRecursive(Node* root, int value) {
+void insertRecursive(Node* root, int value)
+{
     if (value < root->value) {
         if (root->leftChild == NULL) {
             root->leftChild = nodeCreate(value);
@@ -75,7 +79,8 @@ void insertRecursive(Node* root, int value) {
     }
 }
 
-void bstInsert(BST* tree, int value) {
+void bstInsert(BST* tree, int value)
+{
     if (tree == NULL) {
         return;
     }
@@ -88,7 +93,8 @@ void bstInsert(BST* tree, int value) {
     insertRecursive(tree->root, value);
 }
 
-bool containsRecursive(Node* root, int value) {
+bool containsRecursive(Node* root, int value)
+{
     if (root == NULL) {
         return false;
     }
@@ -104,7 +110,8 @@ bool containsRecursive(Node* root, int value) {
     }
 }
 
-bool bstContains(BST* tree, int value) {
+bool bstContains(BST* tree, int value)
+{
     if (tree == NULL) {
         return false;
     }
@@ -112,7 +119,8 @@ bool bstContains(BST* tree, int value) {
     return containsRecursive(tree->root, value);
 }
 
-void bstFree(BST* tree) {
+void bstFree(BST* tree)
+{
     if (tree == NULL) {
         return;
     }
