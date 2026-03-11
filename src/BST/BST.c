@@ -135,7 +135,8 @@ void bstFree(BST* tree)
     free(tree);
 }
 
-int heightRecursive(Node* root) {
+int heightRecursive(Node* root)
+{
     if (root == NULL) {
         return 0;
     }
@@ -146,7 +147,8 @@ int heightRecursive(Node* root) {
     return 1 + (left < right ? right : left);
 }
 
-int bstHeight(BST* tree) {
+int bstHeight(BST* tree)
+{
     if (tree == NULL) {
         return 0;
     }
@@ -154,7 +156,8 @@ int bstHeight(BST* tree) {
     return heightRecursive(tree->root);
 }
 
-int sizeRecursive(Node* root) {
+int sizeRecursive(Node* root)
+{
     if (root == NULL) {
         return 0;
     }
@@ -165,7 +168,8 @@ int sizeRecursive(Node* root) {
     return 1 + left + right;
 }
 
-int bstSize(BST* tree) {
+int bstSize(BST* tree)
+{
     if (tree == NULL) {
         return 0;
     }
@@ -173,7 +177,8 @@ int bstSize(BST* tree) {
     return sizeRecursive(tree->root);
 }
 
-int minRecursive(Node* root) {
+int minRecursive(Node* root)
+{
     if (root == NULL) {
         return INT_MAX;
     }
@@ -185,7 +190,8 @@ int minRecursive(Node* root) {
     return root->value < childsMin ? root->value : childsMin;
 }
 
-int bstMin(BST* tree) {
+int bstMin(BST* tree)
+{
     if (tree == NULL) {
         return INT_MAX;
     }
@@ -193,7 +199,8 @@ int bstMin(BST* tree) {
     return minRecursive(tree->root);
 }
 
-int maxRecursive(Node* root) {
+int maxRecursive(Node* root)
+{
     if (root == NULL) {
         return INT_MIN;
     }
@@ -205,7 +212,8 @@ int maxRecursive(Node* root) {
     return root->value < childsMax ? childsMax : root->value;
 }
 
-int bstMax(BST* tree) {
+int bstMax(BST* tree)
+{
     if (tree == NULL) {
         return INT_MIN;
     }
