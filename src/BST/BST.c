@@ -1,6 +1,7 @@
 #include "BST.h"
 
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct Node Node;
@@ -131,4 +132,64 @@ void bstFree(BST* tree)
     }
 
     free(tree);
+}
+
+void bstInorderNode(Node* node)
+{
+    if (node == NULL) {
+        return;
+    }
+
+    bstInorderNode(node->leftChild);
+    printf("%d", node->value);
+    bstInorderNode(node->rightChild);
+}
+
+void bstPreorderNode(Node* node)
+{
+    if (node == NULL) {
+        return;
+    }
+
+    printf("%d", node->value);
+    bstPreorderNode(node->leftChild);
+    bstPreorderNode(node->rightChild);
+}
+
+void bstPostorderNode(Node* node)
+{
+    if (node == NULL) {
+        return;
+    }
+
+    bstPostorderNode(node->leftChild);
+    bstPostorderNode(node->rightChild);
+    printf("%d", node->value);
+}
+
+void bstInorder(BST* tree)
+{
+    if (tree == NULL) {
+        return;
+    }
+
+    bstInorderNode(tree->root);
+}
+
+void bstPreorder(BST* tree)
+{
+    if (tree == NULL) {
+        return;
+    }
+
+    bstPreorderNode(tree->root);
+}
+
+void bstPostorder(BST* tree)
+{
+    if (tree == NULL) {
+        return;
+    }
+
+    bstPostorderNode(tree->root);
 }
