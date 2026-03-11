@@ -1,6 +1,8 @@
 #include "BST.h"
 
+#include <limits.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 typedef struct Node Node;
@@ -131,4 +133,53 @@ void bstFree(BST* tree)
     }
 
     free(tree);
+}
+
+int heightRecursive(Node* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int left = heightRecursive(root->leftChild);
+    int right = heightRecursive(root->rightChild);
+
+    return 1 + (left < right ? right : left);
+}
+
+int bstHeight(BST* tree) {
+    if (tree == NULL) {
+        return 0;
+    }
+
+    return heightRecursive(tree->root);
+}
+
+int bstSize(BST* tree) {
+    if (tree == NULL || tree->root == NULL) {
+        return 0;
+    }
+
+    // do smth
+
+    return 0;
+}
+
+int bstMin(BST* tree) {
+    if (tree == NULL || tree->root == NULL) {
+        return INT_MAX;
+    }
+
+    // do smth
+
+    return 0;
+}
+
+int bstMax(BST* tree) {
+    if (tree == NULL || tree->root == NULL) {
+        return INT_MIN;
+    }
+
+    // do smth
+
+    return 0;
 }
