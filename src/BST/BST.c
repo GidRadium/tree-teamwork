@@ -154,14 +154,23 @@ int bstHeight(BST* tree) {
     return heightRecursive(tree->root);
 }
 
-int bstSize(BST* tree) {
-    if (tree == NULL || tree->root == NULL) {
+int sizeRecursive(Node* root) {
+    if (root == NULL) {
         return 0;
     }
 
-    // do smth
+    int left = heightRecursive(root->leftChild);
+    int right = heightRecursive(root->rightChild);
 
-    return 0;
+    return 1 + left + right;
+}
+
+int bstSize(BST* tree) {
+    if (tree == NULL) {
+        return 0;
+    }
+
+    return sizeRecursive(tree->root);
 }
 
 int bstMin(BST* tree) {
