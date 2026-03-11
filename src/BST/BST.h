@@ -16,3 +16,6 @@ bool bstContains(BST* tree, int value);
 
 // Free all allocated memory for tree and values in it.
 void bstFree(BST* tree);
+
+// Removes the value passed to the function from the tree. Rebuilds the tree if necessary.
+void bstDelete(BST* tree, int value);
