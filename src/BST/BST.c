@@ -1,8 +1,8 @@
 #include "BST.h"
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <limits.h>
 
 typedef struct Node Node;
 
@@ -134,7 +134,8 @@ void bstFree(BST* tree)
     free(tree);
 }
 
-int kthMinRecursive(Node* root, int k, int* count) {
+int kthMinRecursive(Node* root, int k, int* count)
+{
     if (root == NULL) {
         return INT_MAX;
     }
@@ -152,7 +153,8 @@ int kthMinRecursive(Node* root, int k, int* count) {
     return kthMinRecursive(root->rightChild, k, count);
 }
 
-int bstKthMin(BST* tree, int k) {
+int bstKthMin(BST* tree, int k)
+{
     if (k <= 0) {
         return INT_MIN;
     }
