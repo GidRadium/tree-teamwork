@@ -1,5 +1,6 @@
 #include "BST.h"
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -131,4 +132,37 @@ void bstFree(BST* tree)
     }
 
     free(tree);
+}
+
+int kthMinRecursive(Node* root, int k, int* count)
+{
+    if (root == NULL) {
+        return INT_MAX;
+    }
+
+    int leftResult = kthMinRecursive(root->leftChild, k, count);
+    if (k <= *count) {
+        return leftResult;
+    }
+
+    (*count)++;
+    if (k == *count) {
+        return root->value;
+    }
+
+    return kthMinRecursive(root->rightChild, k, count);
+}
+
+int bstKthMin(BST* tree, int k)
+{
+    if (k <= 0) {
+        return INT_MIN;
+    }
+
+    if (tree == NULL) {
+        return INT_MAX;
+    }
+
+    int count = 0;
+    return kthMinRecursive(tree->root, k, &count);
 }

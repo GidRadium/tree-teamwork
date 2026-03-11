@@ -1,5 +1,6 @@
 #include "BST.h"
 #include <assert.h>
+#include <limits.h>
 
 void testCreateEmptyTree()
 {
@@ -88,6 +89,29 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
+void testKthMin()
+{
+    int values[] = { 1, 2, 3, -1, -2, 0, 4, -4 };
+    int count = 8;
+
+    BST* tree = bstCreate();
+    assert(tree);
+
+    for (int i = 0; i < count; ++i) {
+        bstInsert(tree, values[i]);
+    }
+
+    assert(bstKthMin(tree, -1) == INT_MIN);
+    assert(bstKthMin(tree, 0) == INT_MIN);
+    assert(bstKthMin(tree, 1) == -4);
+    assert(bstKthMin(tree, 3) == -1);
+    assert(bstKthMin(tree, 4) == 0);
+    assert(bstKthMin(tree, 8) == 4);
+    assert(bstKthMin(tree, 9) == INT_MAX);
+
+    bstFree(tree);
+}
+
 int main(void)
 {
     testCreateEmptyTree();
@@ -95,6 +119,7 @@ int main(void)
     testDublicatedInsert();
     testMultipleGrowingInserts();
     testMultipleDiffrentInserts();
+    testKthMin();
 
     return 0;
 }

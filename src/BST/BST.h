@@ -16,3 +16,6 @@ bool bstContains(BST* tree, int value);
 
 // Free all allocated memory for tree and values in it.
 void bstFree(BST* tree);
+
+// Returns k-th minimum value stored in tree. Returns INT_MIN if k < 0 and INT_MAX if k > size of tree.
+int bstKthMin(BST* tree, int k);
