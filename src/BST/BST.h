@@ -16,3 +16,6 @@ bool bstContains(BST* tree, int value);
 
 // Free all allocated memory for tree and values in it.
 void bstFree(BST* tree);
+
+// Returns tree, that contains all elements in both trees.
+BST* bstMerge(BST* tree1, BST* tree2);

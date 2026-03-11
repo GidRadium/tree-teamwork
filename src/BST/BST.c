@@ -132,3 +132,33 @@ void bstFree(BST* tree)
 
     free(tree);
 }
+
+void mergeRecursive(BST* tree, Node* subtree)
+{
+    if (subtree == NULL) {
+        return;
+    }
+
+    bstInsert(tree, subtree->value);
+    mergeRecursive(tree, subtree->leftChild);
+    mergeRecursive(tree, subtree->rightChild);
+}
+
+BST* bstMerge(BST* tree1, BST* tree2)
+{
+    BST* tree = bstCreate();
+
+    if (tree == NULL) {
+        return NULL;
+    }
+
+    if (tree1 != NULL) {
+        mergeRecursive(tree, tree1->root);
+    }
+
+    if (tree2 != NULL) {
+        mergeRecursive(tree, tree2->root);
+    }
+
+    return tree;
+}
