@@ -193,12 +193,22 @@ int bstMin(BST* tree) {
     return minRecursive(tree->root);
 }
 
-int bstMax(BST* tree) {
-    if (tree == NULL || tree->root == NULL) {
+int maxRecursive(Node* root) {
+    if (root == NULL) {
         return INT_MIN;
     }
 
-    // do smth
+    int left = maxRecursive(root->leftChild);
+    int right = maxRecursive(root->rightChild);
+    int childsMax = left < right ? right : left;
 
-    return 0;
+    return root->value < childsMax ? childsMax : root->value;
+}
+
+int bstMax(BST* tree) {
+    if (tree == NULL) {
+        return INT_MIN;
+    }
+
+    return maxRecursive(tree->root);
 }
