@@ -89,7 +89,8 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
-void testHeight() {
+void testHeight()
+{
     BST* tree = bstCreate();
     assert(tree);
     assert(bstHeight(tree) == 0);
@@ -103,7 +104,8 @@ void testHeight() {
     bstFree(tree);
 }
 
-void testSize() {
+void testSize()
+{
     BST* tree = bstCreate();
     assert(tree);
     assert(bstSize(tree) == 0);
@@ -119,7 +121,8 @@ void testSize() {
     bstFree(tree);
 }
 
-void testMin() {
+void testMin()
+{
     BST* tree = bstCreate();
     assert(tree);
     assert(bstMin(tree) == INT_MAX);
@@ -134,7 +137,8 @@ void testMin() {
     bstFree(tree);
 }
 
-void testMax() {
+void testMax()
+{
     BST* tree = bstCreate();
     assert(tree);
     assert(bstMax(tree) == INT_MIN);
