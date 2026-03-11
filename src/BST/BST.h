@@ -16,3 +16,15 @@ bool bstContains(BST* tree, int value);
 
 // Free all allocated memory for tree and values in it.
 void bstFree(BST* tree);
+
+// Returns tree height. O(size).
+int bstHeight(BST* tree);
+
+// Returns tree size. O(size).
+int bstSize(BST* tree);
+
+// Returns smallest value stored in tree. INT_MAX if tree is empty or NULL.
+int bstMin(BST* tree);
+
+// Returns biggest value stored in tree. INT_MIN if tree is empty or NULL.
+int bstMax(BST* tree);
