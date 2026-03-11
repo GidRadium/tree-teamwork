@@ -1,5 +1,6 @@
 #include "BST.h"
 #include <assert.h>
+#include <limits.h>
 
 void testCreateEmptyTree()
 {
@@ -88,6 +89,70 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
+void testHeight()
+{
+    BST* tree = bstCreate();
+    assert(tree);
+    assert(bstHeight(tree) == 0);
+
+    int count = 100;
+    for (int i = 1; i < count; ++i) {
+        bstInsert(tree, i);
+        assert(bstHeight(tree) == i);
+    }
+
+    bstFree(tree);
+}
+
+void testSize()
+{
+    BST* tree = bstCreate();
+    assert(tree);
+    assert(bstSize(tree) == 0);
+
+    int count = 100;
+    for (int i = 1; i < count; ++i) {
+        bstInsert(tree, i);
+        assert(bstSize(tree) == i);
+        bstInsert(tree, i);
+        assert(bstSize(tree) == i);
+    }
+
+    bstFree(tree);
+}
+
+void testMin()
+{
+    BST* tree = bstCreate();
+    assert(tree);
+    assert(bstMin(tree) == INT_MAX);
+
+    int count = 100;
+    for (int i = 1; i < count; ++i) {
+        bstInsert(tree, -i);
+        bstInsert(tree, i);
+        assert(bstMin(tree) == -i);
+    }
+
+    bstFree(tree);
+}
+
+void testMax()
+{
+    BST* tree = bstCreate();
+    assert(tree);
+    assert(bstMax(tree) == INT_MIN);
+
+    int count = 100;
+    for (int i = 1; i < count; ++i) {
+        bstInsert(tree, i);
+        bstInsert(tree, -i);
+        assert(bstMax(tree) == i);
+    }
+
+    bstFree(tree);
+}
+
 int main(void)
 {
     testCreateEmptyTree();
@@ -95,6 +160,10 @@ int main(void)
     testDublicatedInsert();
     testMultipleGrowingInserts();
     testMultipleDiffrentInserts();
+    testHeight();
+    testSize();
+    testMin();
+    testMax();
 
     return 0;
 }

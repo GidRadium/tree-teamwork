@@ -1,6 +1,8 @@
 #include "BST.h"
 
+#include <limits.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 typedef struct Node Node;
@@ -131,4 +133,90 @@ void bstFree(BST* tree)
     }
 
     free(tree);
+}
+
+int heightRecursive(Node* root)
+{
+    if (root == NULL) {
+        return 0;
+    }
+
+    int left = heightRecursive(root->leftChild);
+    int right = heightRecursive(root->rightChild);
+
+    return 1 + (left < right ? right : left);
+}
+
+int bstHeight(BST* tree)
+{
+    if (tree == NULL) {
+        return 0;
+    }
+
+    return heightRecursive(tree->root);
+}
+
+int sizeRecursive(Node* root)
+{
+    if (root == NULL) {
+        return 0;
+    }
+
+    int left = sizeRecursive(root->leftChild);
+    int right = sizeRecursive(root->rightChild);
+
+    return 1 + left + right;
+}
+
+int bstSize(BST* tree)
+{
+    if (tree == NULL) {
+        return 0;
+    }
+
+    return sizeRecursive(tree->root);
+}
+
+int minRecursive(Node* root)
+{
+    if (root == NULL) {
+        return INT_MAX;
+    }
+
+    int left = minRecursive(root->leftChild);
+    int right = minRecursive(root->rightChild);
+    int childsMin = left < right ? left : right;
+
+    return root->value < childsMin ? root->value : childsMin;
+}
+
+int bstMin(BST* tree)
+{
+    if (tree == NULL) {
+        return INT_MAX;
+    }
+
+    return minRecursive(tree->root);
+}
+
+int maxRecursive(Node* root)
+{
+    if (root == NULL) {
+        return INT_MIN;
+    }
+
+    int left = maxRecursive(root->leftChild);
+    int right = maxRecursive(root->rightChild);
+    int childsMax = left < right ? right : left;
+
+    return root->value < childsMax ? childsMax : root->value;
+}
+
+int bstMax(BST* tree)
+{
+    if (tree == NULL) {
+        return INT_MIN;
+    }
+
+    return maxRecursive(tree->root);
 }
