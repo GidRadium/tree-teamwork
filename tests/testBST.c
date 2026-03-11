@@ -88,6 +88,34 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
+void testMergeTrees()
+{
+    BST* tree1 = bstCreate();
+    assert(tree1);
+    BST* tree2 = bstCreate();
+    assert(tree2);
+
+    int from = -20;
+    int to = 100;
+
+    for (int i = from; i < to; ++i) {
+        bstInsert(tree1, i);
+        bstInsert(tree2, -i);
+    }
+
+    BST* tree = bstMerge(tree1, tree2);
+    assert(tree);
+    assert(!bstContains(tree, -to));
+    assert(!bstContains(tree, to));
+    for (int i = 1 - to; i < to; ++i) {
+        assert(bstContains(tree, i));
+    }
+
+    bstFree(tree1);
+    bstFree(tree2);
+    bstFree(tree);
+}
+
 int main(void)
 {
     testCreateEmptyTree();
@@ -95,6 +123,7 @@ int main(void)
     testDublicatedInsert();
     testMultipleGrowingInserts();
     testMultipleDiffrentInserts();
+    testMergeTrees();
 
     return 0;
 }
