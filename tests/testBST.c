@@ -88,7 +88,8 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
-void isValidOneElementTree() {
+void isValidOneElementTree()
+{
     BST* tree = bstCreate();
     assert(tree);
 
@@ -98,7 +99,8 @@ void isValidOneElementTree() {
     bstFree(tree);
 }
 
-void isValidCorrectTree() {
+void isValidCorrectTree()
+{
     BST* tree = bstCreate();
     assert(tree);
 
