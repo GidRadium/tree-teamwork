@@ -88,6 +88,32 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
+void isValidOneElementTree() {
+    BST* tree = bstCreate();
+    assert(tree);
+
+    bstInsert(tree, 1);
+    assert(bstIsValid(tree));
+
+    bstFree(tree);
+}
+
+void isValidCorrectTree() {
+    BST* tree = bstCreate();
+    assert(tree);
+
+    bstInsert(tree, 4);
+    bstInsert(tree, 2);
+    bstInsert(tree, 3);
+    bstInsert(tree, 1);
+    bstInsert(tree, 6);
+    bstInsert(tree, 5);
+    bstInsert(tree, 7);
+    assert(bstIsValid(tree));
+
+    bstFree(tree);
+}
+
 int main(void)
 {
     testCreateEmptyTree();
@@ -95,6 +121,7 @@ int main(void)
     testDublicatedInsert();
     testMultipleGrowingInserts();
     testMultipleDiffrentInserts();
-
+    isValidOneElementTree();
+    isValidCorrectTree();
     return 0;
 }
