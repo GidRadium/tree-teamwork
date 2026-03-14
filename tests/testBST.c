@@ -177,7 +177,8 @@ void testIteratorUnbalanced()
     bstFree(tree);
 }
 
-int main(void) {
+int main(void)
+{
     testCreateEmptyTree();
     testSingleInsert();
     testDublicatedInsert();
