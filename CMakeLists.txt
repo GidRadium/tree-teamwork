@@ -5,8 +5,12 @@ project(tree-teamwork C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# BST library
-add_library(bst STATIC src/BST/BST.c src/BST/BST.h)
+add_library(bst STATIC
+        src/BST/BST.c
+        src/BST/BST.h
+        src/BST/Iterator.c
+        src/BST/Iterator.h
+)
 target_include_directories(bst PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/BST)
 
 # Main
