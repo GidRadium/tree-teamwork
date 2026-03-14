@@ -142,6 +142,7 @@ bool nodeIsValid(Node* node, Node* minNode, Node* maxNode)
     if (minNode != NULL && node->value <= minNode->value) {
         return false;
     }
+    
     if (maxNode != NULL && node->value >= maxNode->value) {
         return false;
     }
