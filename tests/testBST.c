@@ -88,6 +88,25 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
+void testEmptyTreesMerge()
+{
+    BST* tree1 = bstCreate();
+    assert(tree1);
+    BST* tree2 = bstCreate();
+    assert(tree2);
+
+    BST* tree3 = bstMerge(tree1, tree2);
+    assert(tree3);
+
+    bstInsert(tree3, 3);
+    bstInsert(tree2, 3);
+    BST* tree4 = bstMerge(tree3, tree2);
+    assert(bstContains(tree4, 3));
+
+    BST* tree5 = bstMerge(tree4, tree1);
+    assert(bstContains(tree5, 3));
+}
+
 void testMergeTrees()
 {
     BST* tree1 = bstCreate();
