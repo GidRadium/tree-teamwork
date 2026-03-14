@@ -150,6 +150,7 @@ bool nodeIsValid(Node* node, Node* minNode, Node* maxNode)
     if (!nodeIsValid(node->leftChild, minNode, node)) {
         return false;
     }
+    
     if (!nodeIsValid(node->rightChild, node, maxNode)) {
         return false;
     }
