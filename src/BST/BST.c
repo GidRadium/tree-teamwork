@@ -132,3 +132,51 @@ void bstFree(BST* tree)
 
     free(tree);
 }
+
+Node* deleteNode(Node* node, int value)
+{
+    if (node == NULL) {
+        return NULL;
+    }
+
+    if (value < node->value) {
+        node->leftChild = deleteNode(node->leftChild, value);
+        return node;
+    }
+
+    if (value > node->value) {
+        node->rightChild = deleteNode(node->rightChild, value);
+        return node;
+    }
+
+    if (node->leftChild == NULL) {
+        Node* temp = node->rightChild;
+        free(node);
+        return temp;
+    }
+
+    if (node->rightChild == NULL) {
+        Node* temp = node->leftChild;
+        free(node);
+        return temp;
+    }
+
+    Node* minNode = node->rightChild;
+    while (minNode->leftChild != NULL) {
+        minNode = minNode->leftChild;
+    }
+
+    node->value = minNode->value;
+    node->rightChild = deleteNode(node->rightChild, minNode->value);
+
+    return node;
+}
+
+void bstDelete(BST* tree, int value)
+{
+    if (tree == NULL) {
+        return;
+    }
+
+    tree->root = deleteNode(tree->root, value);
+}
