@@ -163,5 +163,6 @@ bool bstIsValid(BST* tree)
     if (tree == NULL) {
         return false;
     }
+    
     return nodeIsValid(tree->root, NULL, NULL);
 }
