@@ -132,3 +132,37 @@ void bstFree(BST* tree)
 
     free(tree);
 }
+
+bool nodeIsValid(Node* node, Node* minNode, Node* maxNode)
+{
+    if (node == NULL) {
+        return true;
+    }
+
+    if (minNode != NULL && node->value <= minNode->value) {
+        return false;
+    }
+
+    if (maxNode != NULL && node->value >= maxNode->value) {
+        return false;
+    }
+
+    if (!nodeIsValid(node->leftChild, minNode, node)) {
+        return false;
+    }
+
+    if (!nodeIsValid(node->rightChild, node, maxNode)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool bstIsValid(BST* tree)
+{
+    if (tree == NULL) {
+        return false;
+    }
+
+    return nodeIsValid(tree->root, NULL, NULL);
+}
