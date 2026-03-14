@@ -141,7 +141,7 @@ void bstInorderNode(Node* node)
     }
 
     bstInorderNode(node->leftChild);
-    printf("%d", node->value);
+    printf("%d ", node->value);
     bstInorderNode(node->rightChild);
 }
 
@@ -151,7 +151,7 @@ void bstPreorderNode(Node* node)
         return;
     }
 
-    printf("%d", node->value);
+    printf("%d ", node->value);
     bstPreorderNode(node->leftChild);
     bstPreorderNode(node->rightChild);
 }
@@ -164,7 +164,7 @@ void bstPostorderNode(Node* node)
 
     bstPostorderNode(node->leftChild);
     bstPostorderNode(node->rightChild);
-    printf("%d", node->value);
+    printf("%d ", node->value);
 }
 
 void bstInorder(BST* tree)
