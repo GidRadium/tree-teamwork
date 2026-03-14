@@ -16,3 +16,12 @@ bool bstContains(BST* tree, int value);
 
 // Free all allocated memory for tree and values in it.
 void bstFree(BST* tree);
+
+// Traverses each node in the tree and outputs its value using In-order traversal.
+void bstInorder(BST* tree);
+
+// Traverses each node in the tree and outputs its value using Pre-order traversal.
+void bstPreorder(BST* tree);
+
+// Traverses each node in the tree and outputs its value using Post-order traversal.
+void bstPostorder(BST* tree);
