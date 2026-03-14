@@ -125,6 +125,6 @@ int main(void)
     testMultipleDiffrentInserts();
     isValidOneElementTree();
     isValidCorrectTree();
-    
+
     return 0;
 }
