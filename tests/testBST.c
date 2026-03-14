@@ -89,7 +89,8 @@ void testMultipleDiffrentInserts()
     bstFree(tree);
 }
 
-void testIteratorEmpty() {
+void testIteratorEmpty()
+{
     BST* tree = bstCreate();
     Iterator* it = iteratorInit(tree);
     assert(it);
@@ -99,7 +100,8 @@ void testIteratorEmpty() {
     bstFree(tree);
 }
 
-void testIteratorSingleNode() {
+void testIteratorSingleNode()
+{
     BST* tree = bstCreate();
     assert(tree);
 
@@ -119,7 +121,8 @@ void testIteratorSingleNode() {
     bstFree(tree);
 }
 
-void testIteratorInorder() {
+void testIteratorInorder()
+{
     BST* tree = bstCreate();
     assert(tree);
 
@@ -147,7 +150,8 @@ void testIteratorInorder() {
     bstFree(tree);
 }
 
-void testIteratorUnbalanced() {
+void testIteratorUnbalanced()
+{
     BST* tree = bstCreate();
     assert(tree);
 
